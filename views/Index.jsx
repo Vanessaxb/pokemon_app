@@ -7,12 +7,24 @@ const myStyle = {
     backgroundColor: '#000000',
     };
 
-function Index () {
-    // console.log(pokemonData);
+function Index (props) {
+    const {pokemonData} = props;
+    console.log(pokemonData);
 
     return (
+    <main>
         <h1>See all the Pokemon! </h1>
-
+        
+        <ul>
+            {pokemonData.map((pokemon, i) => {
+                return (
+                    <li>
+                        {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
+                    </li>
+                )
+            })}
+        </ul>
+        </main>
     )
 }
 
