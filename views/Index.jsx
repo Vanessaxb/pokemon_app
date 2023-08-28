@@ -19,7 +19,7 @@ function Index (props) {
             {pokemonData.map((pokemon, i) => {
                 return (
                     <li>
-                        <a href={`pokemon/${i}`}>
+                        <a href={`/pokemon/${i}`}>
                         {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
                         </a>
                     </li>

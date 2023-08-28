@@ -34,11 +34,12 @@ app.get("/pokemon", (req, res) => {
 
 //pokemon detailed item by param
 app.get("/pokemon/:id", (req, res) => {
+  // res.send(req.params.id)
   const { id } = req.params;
   res.render("Show", {
     pokemon: pokemonData[id],
   });
-  // res.send(req.params.id)
+  
 });
 
 //listen to PORT

@@ -3,13 +3,14 @@
 const React = require("react");
 
 function Show(props) {
-  const { pokemonData } = props;
+  const { pokemon } = props;
 
   return (
     <main>
-      <h1>
-        Pokemon {pokemonData.name} {pokemonData.i}
-      </h1>
+      <a href={`/pokemon`}>Back</a>
+      <h1>Gotta Catch 'Em All</h1>
+      <h2> {pokemon.name} </h2>
+      <img src={pokemon.img + ".jpg"} alt={pokemon.name}></img>
     </main>
   );
 }
