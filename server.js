@@ -24,13 +24,20 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Pokemon App!')
 }) 
 
-//pokemon data
+//pokemon data list
 app.get('/pokemon', (req, res) => {
     // res.send(pokemonData)
     res.render("Index", {
         pokemonData: pokemonData,
     })
 })
+
+//pokemon detailed itm by param
+app.get('/pokemon/:id', (req, res) => { 
+    res.send(req.params.id)
+    })
+
+
 
 
 //listen to PORT
