@@ -1,18 +1,35 @@
 const express = require('express');
+const jsxEngine = require('jsx-view-engine')
 
-const pokemon = require('./models/pokemon')
+const pokemonData = require('./models/pokemon')
 
 const app = express();
 const PORT = 3000;
 
-//Routes
+//!app config
+app.set("view engine", "jsx"); //set activatws the view engine jsx
+app.engine("jsx", jsxEngine());
+
+//! Middleware. Needs to come before my routes
+app.use((req, res, next) => {
+    // console.log("I run on every request");
+    console.log(req.method, req.url);
+    next();
+  });
+  //parse and add incoming data to a req body object
+  app.use(express.urlencoded({ extended: false }));
+
+//!Routes
 app.get('/', (req, res) => {
     res.send('Welcome to the Pokemon App!')
 }) 
 
 //pokemon data
 app.get('/pokemon', (req, res) => {
-    res.send(pokemon)
+    // res.send(pokemonData)
+    res.render("Index", {
+        pokemonData: pokemonData,
+    })
 })
 
 

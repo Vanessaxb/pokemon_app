@@ -1,6 +1,6 @@
 //data
 
-const pokemon = [
+const pokemonData = [
   { name: "bulbasaur", img: "http://img.pokemondb.net/artwork/bulbasaur" },
   { name: "ivysaur", img: "http://img.pokemondb.net/artwork/ivysaur" },
   { name: "venusaur", img: "http://img.pokemondb.net/artwork/venusaur" },
@@ -10,4 +10,4 @@ const pokemon = [
   { name: "wartortle", img: "http://img.pokemondb.net/artwork/wartortle" },
 ];
 
-module.exports = pokemon;
+module.exports = pokemonData;
