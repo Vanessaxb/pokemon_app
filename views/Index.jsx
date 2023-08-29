@@ -1,5 +1,4 @@
 //shows full list of POkemon from Data array
-
 const React = require("react");
 
 const myStyle = {
@@ -18,10 +17,11 @@ function Index(props) {
       <ul>
         {pokemonData.map((pokemon, i) => {
           return (
-            <li>
-              <a href={`/pokemon/${i}`} style={myStyle}>
+            <li key={pokemon._id}>
+              <a href={`/pokemon/${pokemon._id}`} style={myStyle}>
                 {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
               </a>
+              {/* <img src={pokemon.img}></img> */}
             </li>
           );
         })}
@@ -32,13 +32,3 @@ function Index(props) {
 
 module.exports = Index;
 
-//!Not sure where to add this
-//
-
-//   class MyFirstComponent extends React.Component {
-//     render() {
-//       return (
-//         <div style={myStyle}>My First React Component!</div>
-//       );
-//     }
-//   }

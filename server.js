@@ -3,6 +3,10 @@ const jsxEngine = require("jsx-view-engine");
 
 const pokemonData = require("./models/pokemon");
 
+require('dotenv').config();
+const mongoose = require('mongoose');
+const Pokemon = require('./models/pokemon')
+
 const app = express();
 const PORT = 3000;
 
@@ -25,22 +29,52 @@ app.get("/", (req, res) => {
 });
 
 //pokemon data list
-app.get("/pokemon", (req, res) => {
+app.get("/pokemon", async (req, res) => {
   // res.send(pokemonData)
+
+  const pokemonFromDB = await Pokemon.find({});
+
   res.render("Index", {
-    pokemonData: pokemonData,
+    pokemonData: pokemonFromDB,
   });
 });
 
+//creating pokemon/new route
+app.get('/pokemon/new', (req, res) => {
+  res.render('New')
+});
+
+//!post
+app.post('/pokemon', async (req, res) => {
+  try {
+    const createdPokemon = await Pokemon.create(req.body);
+    console.log(createdPokemon);;
+    res.redirect('/pokemon');
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
 //pokemon detailed item by param
-app.get("/pokemon/:id", (req, res) => {
-  // res.send(req.params.id)
+app.get("/pokemon/:id", async (req, res) => {
+ 
+  
   const { id } = req.params;
+  const pokemon = await Pokemon.findById(id)
+  console.log("Found Pokemon, pokemon");
+
   res.render("Show", {
-    pokemon: pokemonData[id],
+    pokemon: pokemon,
   });
   
 });
+
+//!Connect to pokemon database using Mongoose
+mongoose.connect(process.env.MONGO_URI);
+mongoose.connection.once('open', ()  => {
+  console.log('Connected to Mongo');
+})
 
 //listen to PORT
 app.listen(PORT, () => {
